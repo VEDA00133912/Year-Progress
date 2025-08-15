@@ -1,25 +1,31 @@
 body {
-  background-color: #000;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+  position: relative;
 }
 
 h1 {
   font-size: 3em;
   margin-bottom: 20px;
+  z-index: 10;
+  position: relative;
 }
 
 #progressText {
   font-size: 2em;
-  color: #ffd700; 
+  color: #ffd700;
   margin-bottom: 30px;
   animation: glow 2s ease-in-out infinite alternate;
+  z-index: 10;
+  position: relative;
 }
 
 @keyframes glow {
@@ -31,11 +37,19 @@ h1 {
   width: 80%;
   max-width: 600px;
   height: 40px;
-  background-color: #222;
+  background: repeating-linear-gradient(
+    45deg,
+    #222 0px,
+    #222 10px,
+    #333 10px,
+    #333 20px
+  );
   border: 3px solid;
   border-image: linear-gradient(45deg, #aaa, #fff, #888, #ccc) 1;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  z-index: 10;
+  position: relative;
 }
 
 .progress-bar {
@@ -43,4 +57,17 @@ h1 {
   width: 0%;
   background-size: 200% 100%;
   transition: width 2s ease-out, background 2s ease-out;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+canvas#bgCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
